@@ -18,13 +18,6 @@ int main() {
     int charpressed;
     char earthWeight[MAX_INPUT_CHARS + 1] = "\0";      // NOTE: One extra space required for null terminator char '\0'
 
-    Vector2 triangle1 = (Vector2){200,150}; 
-    Vector2 triangle2 = (Vector2){210,110}; 
-    Vector2 triangle3 = (Vector2){220,120}; 
-    Vector2 triangle4 = (Vector2){200,100}; 
-    Vector2 triangle5 = (Vector2){210,110}; 
-    Vector2 triangle6 = (Vector2){220,120};
-
   //Initialization
     InitWindow(GetScreenWidth(), GetScreenHeight(), "relative-gravity");
     if (IsWindowReady()){
@@ -46,8 +39,6 @@ int main() {
   Texture2D saturnbg = LoadTexture("resources/saturn.png");
   Texture2D uranusbg = LoadTexture("resources/uranus.png");
   Texture2D neptunebg = LoadTexture("resources/neptune.png");
-  Texture2D triangleup = LoadTexture("resources/triangleup.png");
-  Texture2D triangledown = LoadTexture("resources/triangledown.png");
   while (!WindowShouldClose()){
     //update
     //int ScreenWidth = GetScreenWidth();
@@ -63,7 +54,7 @@ int main() {
         int key = GetCharPressed();
         while (key > 0)
           {
-              if ((key >= 32) && (key <= 125))
+              if ((key >= 48) && (key <= 57))
                 {
                   earthWeight[letterCount] = (char)key;
                   earthWeight[letterCount+1] = '\0'; // Add null terminator at the end of the string.
