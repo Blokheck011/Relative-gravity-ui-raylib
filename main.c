@@ -1,11 +1,10 @@
 #include <string.h>
 #include "libraries/raylib.h"
-
+#define MAX_INPUT_CHARS     3
 
 int main() {
 
     //variables
-    int earthWeight;
     double earthgravity = 1;
     double mercurygravity = 0.38; //planetchoice 1
     double venusgravity = 0.91; //planetchoice 2
@@ -15,7 +14,16 @@ int main() {
     double uranusgravity = 0.92; //planetchoice 6
     double neptunegravity = 1.19; //planetchoice 7
     int planetchoice = 0;
-    Vector2 screencenter;
+    int letterCount = 0;
+    int charpressed;
+    char earthWeight[MAX_INPUT_CHARS + 1] = "\0";      // NOTE: One extra space required for null terminator char '\0'
+
+    Vector2 triangle1 = (Vector2){200,150}; 
+    Vector2 triangle2 = (Vector2){210,110}; 
+    Vector2 triangle3 = (Vector2){220,120}; 
+    Vector2 triangle4 = (Vector2){200,100}; 
+    Vector2 triangle5 = (Vector2){210,110}; 
+    Vector2 triangle6 = (Vector2){220,120};
 
   //Initialization
     InitWindow(GetScreenWidth(), GetScreenHeight(), "relative-gravity");
@@ -38,7 +46,8 @@ int main() {
   Texture2D saturnbg = LoadTexture("resources/saturn.png");
   Texture2D uranusbg = LoadTexture("resources/uranus.png");
   Texture2D neptunebg = LoadTexture("resources/neptune.png");
-
+  Texture2D triangleup = LoadTexture("resources/triangleup.png");
+  Texture2D triangledown = LoadTexture("resources/triangledown.png");
   while (!WindowShouldClose()){
     //update
     //int ScreenWidth = GetScreenWidth();
@@ -51,10 +60,30 @@ int main() {
 
     switch(planetchoice) {
       case (0): {
+        int key = GetCharPressed();
+        while (key > 0)
+          {
+              if ((key >= 32) && (key <= 125))
+                {
+                  earthWeight[letterCount] = (char)key;
+                  earthWeight[letterCount+1] = '\0'; // Add null terminator at the end of the string.
+                  letterCount++;
+                }
+
+              key = GetCharPressed();  // Check next character in the queue
+          }
+    if (IsKeyPressed(KEY_BACKSPACE))
+        {
+            letterCount--;
+            if (letterCount < 0) letterCount = 0;
+            earthWeight[letterCount] = '\0';
+        }
+
         DrawTexture(earthbg, 0, 0, WHITE);
         DrawText("Welcome to the relative gravity app, where you can see your weight on another planet!", 30, 20, 35, WHITE);
         DrawText("Please choose your weight and planet down below.", 30, 60, 35, WHITE);
-        DrawText("weight: " +earthWeight, 30, 160, 50, WHITE);
+        DrawText("weight:", 30, 160, 50, WHITE);
+        DrawText(earthWeight, 200, 160, 50, WHITE);
         break;
       }
       case (1): {

@@ -65,6 +65,7 @@
 		"brdf",
 		"cgltf",
 		"cubicmap",
+		"earthbg",
 		"earthgravity",
 		"equirectangular",
 		"flac",
@@ -78,14 +79,18 @@
 		"heightmap",
 		"iconify",
 		"interpupillary",
+		"jupiterbg",
 		"jupitergravity",
 		"mackron",
+		"marsbg",
 		"marsgravity",
+		"mercurybg",
 		"mercurygravity",
 		"metalness",
 		"millimetres",
 		"miniaudio",
 		"mipmaps",
+		"neptunebg",
 		"neptunegravity",
 		"planetchoice",
 		"raudio",
@@ -102,6 +107,7 @@
 		"rmodels",
 		"rtext",
 		"rtextures",
+		"saturnbg",
 		"saturngravity",
 		"sdefl",
 		"sinfl",
@@ -109,10 +115,16 @@
 		"texcoords",
 		"timming",
 		"tinyobj",
+		"triangleup",
+		"uranusbg",
 		"uranusgravity",
 		"vectex",
+		"venusbg",
 		"venusgravity",
 		"videogames",
 		"vorbis"
-	]
+	],
+	"files.associations": {
+		"typeinfo": "c"
+	}
 }
