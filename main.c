@@ -14,6 +14,8 @@ int main() {
     double uranusgravity = 0.92; //planetchoice 6
     double neptunegravity = 1.19; //planetchoice 7
     int planetchoice = 0;
+    int planet_pointer = 0;
+    char *planet_pointer_text = malloc(100);
     int letterCount = 0;
     int charpressed;
     char earthWeight[MAX_INPUT_CHARS + 1] = "\0";      // NOTE: One extra space required for null terminator char '\0'
@@ -46,6 +48,49 @@ int main() {
     //float HalfScreenWidth = ScreenWidth/2;
     //float HalfScreenHeight = ScreenHeight/2;
 
+    switch (planet_pointer) {
+      case 0: {
+        strcpy(planet_pointer_text, "none");
+        DrawTexture(earthbg, 0, 0, WHITE);
+        break;
+      }
+      case 1: {
+        strcpy(planet_pointer_text, "mercury");
+        DrawTexture(mercurybg, 0, 0, WHITE);
+        break;
+      }
+      case 2: {
+        strcpy(planet_pointer_text, "venus");
+        DrawTexture(venusbg, 0, 0, WHITE);
+        break;
+      }
+      case 3: {
+        strcpy(planet_pointer_text, "mars");
+        DrawTexture(marsbg, 0, 0, WHITE);
+        break;}
+      case 4: {
+        strcpy(planet_pointer_text, "jupiter");
+        DrawTexture(jupiterbg, 0, 0, WHITE);
+        break;
+      }
+      case 5: {
+        strcpy(planet_pointer_text, "saturn");
+        DrawTexture(saturnbg, 0, 0, WHITE);
+        break;
+      }
+      case 6: {
+        strcpy(planet_pointer_text, "uranus");
+        DrawTexture(uranusbg, 0, 0, WHITE);
+        break;
+      }
+      case 7: {
+        strcpy(planet_pointer_text, "neptune");
+        DrawTexture(neptunebg, 0, 0, WHITE);
+        break;
+      }
+
+    }
+
     //drawing
     BeginDrawing();
 
@@ -63,50 +108,55 @@ int main() {
 
               key = GetCharPressed();  // Check next character in the queue
           }
-    if (IsKeyPressed(KEY_BACKSPACE))
+        if (IsKeyPressed(KEY_BACKSPACE))
         {
             letterCount--;
             if (letterCount < 0) letterCount = 0;
             earthWeight[letterCount] = '\0';
         }
+        
+        if (IsKeyPressed(KEY_DOWN)){
+          planet_pointer = planet_pointer-1;
+        }
+        if (IsKeyPressed(KEY_UP)){
+          planet_pointer = planet_pointer+1;
+        }
 
-        DrawTexture(earthbg, 0, 0, WHITE);
+        if(planet_pointer>7) planet_pointer=7;
+        if(planet_pointer<0) planet_pointer=0;
+        
         DrawText("Welcome to the relative gravity app, where you can see your weight on another planet!", 30, 20, 35, WHITE);
         DrawText("Please choose your weight and planet down below.", 30, 60, 35, WHITE);
         DrawText("weight:", 30, 160, 50, WHITE);
         DrawText(earthWeight, 200, 160, 50, WHITE);
+        DrawText(TextFormat("Planet > "), 30, 300, 50, WHITE);
+        DrawText(TextFormat(planet_pointer_text), 250, 300, 50, WHITE);
         break;
       }
       case (1): {
-        DrawTexture(mercurybg, 0, 0, WHITE);
         break;
       }
-      case (2): {
-        DrawTexture(venusbg, 0, 0, WHITE);
+      case (2): {        
         break;
       }
-      case (3): {
-        DrawTexture(marsbg, 0, 0, WHITE);
+      case (3): {        
         break;
       }
-      case (4): {
-        DrawTexture(jupiterbg, 0, 0, WHITE);
+      case (4): {        
         break;
       }
-      case (5): {
-        DrawTexture(saturnbg, 0, 0, WHITE);
+      case (5): {       
         break;
       }
-      case (6): {
-        DrawTexture(uranusbg, 0, 0, WHITE);
+      case (6): {        
         break;
       }
       case (7): {
-        DrawTexture(neptunebg, 0, 0, WHITE);
         break;
       }
     }
 
     EndDrawing();
   }
+  free(planet_pointer_text);
 }
