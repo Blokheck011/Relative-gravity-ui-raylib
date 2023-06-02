@@ -1,6 +1,5 @@
 #include <string.h>
 #include "libraries/raylib.h"
-#define MAX_INPUT_CHARS     999
 
 int main() {
 
@@ -18,7 +17,7 @@ int main() {
     char *planet_pointer_text = malloc(100);
     int letterCount = 0;
     int charpressed;
-    char earthWeight[MAX_INPUT_CHARS + 1] = "\0";      // NOTE: One extra space required for null terminator char '\0'
+    int EarthWeightInt;
 
   //Initialization
     SetConfigFlags(FLAG_MSAA_4X_HINT);
@@ -98,24 +97,7 @@ int main() {
 
     switch(planetchoice) {
       case (0): {
-        int key = GetCharPressed();
-        while (key > 0)
-          {
-              if ((key >= 48) && (key <= 57))
-                {
-                  earthWeight[letterCount] = (char)key;
-                  earthWeight[letterCount+1] = '\0'; // Add null terminator at the end of the string.
-                  letterCount++;
-                }
-
-              key = GetCharPressed();  // Check next character in the queue
-          }
-        if (IsKeyPressed(KEY_BACKSPACE))
-        {
-            letterCount--;
-            if (letterCount < 0) letterCount = 0;
-            earthWeight[letterCount] = '\0';
-        }
+        
         
         if (IsKeyPressed(KEY_DOWN)){
           planet_pointer = planet_pointer-1;
@@ -123,41 +105,51 @@ int main() {
         if (IsKeyPressed(KEY_UP)){
           planet_pointer = planet_pointer+1;
         }
+        if (IsKeyPressed(KEY_ENTER)) {
+          planetchoice = planet_pointer;
+        }
 
         if(planet_pointer>7) planet_pointer=7;
-        if(planet_pointer<0) planet_pointer=0;
-        
+        if(planet_pointer<0) planet_pointer=0;      
+
         DrawText("Welcome to the relative gravity app, where you can see your weight on another planet!", 30, 20, 35, WHITE);
         DrawText("Please choose your weight and planet down below.", 30, 60, 35, WHITE);
-        DrawText("weight:", 30, 160, 50, WHITE);
-        DrawText(earthWeight, 200, 160, 50, WHITE);
+        DrawText(TextFormat("weight: %03i", EarthWeightInt), 30, 160, 50, WHITE);
+        DrawText(EarthWeightInt, 200, 160, 50, WHITE);
         DrawText(TextFormat("Planet > "), 30, 300, 50, WHITE);
         DrawText(TextFormat(planet_pointer_text), 250, 300, 50, WHITE);
         break;
       }
       case (1): {
+        DrawText(TextFormat("your weight on mercury would be: %i", (EarthWeightInt * mercurygravity)), 30, 20, 35, WHITE);
         break;
       }
-      case (2): {        
+      case (2): {
+        DrawText(TextFormat("your weight on venus would be: %i", (EarthWeightInt * venusgravity)), 30, 20, 35, WHITE);        
         break;
       }
-      case (3): {        
+      case (3): { 
+        DrawText(TextFormat("your weight on mars would be: %i", (EarthWeightInt * marsgravity)), 30, 20, 35, WHITE);       
         break;
       }
-      case (4): {        
+      case (4): {
+        DrawText(TextFormat("your weight on jupiter would be: %i", (EarthWeightInt * jupitergravity)), 30, 20, 35, WHITE);        
         break;
       }
       case (5): {       
+        DrawText(TextFormat("your weight on saturn would be: %i", (EarthWeightInt * saturngravity)), 30, 20, 35, WHITE);
         break;
       }
-      case (6): {        
+      case (6): {   
+        DrawText(TextFormat("your weight on uranus would be: %i", (EarthWeightInt * uranusgravity)), 30, 20, 35, WHITE);     
         break;
       }
       case (7): {
+        DrawText(TextFormat("your weight on neptune would be: %i", (EarthWeightInt * neptunegravity)), 30, 20, 35, WHITE);
         break;
       }
     }
-
+    
     EndDrawing();
   }
   free(planet_pointer_text);
