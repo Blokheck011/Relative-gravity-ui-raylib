@@ -11,6 +11,13 @@
 			"blocks.h": "c",
 			"stdio.h": "c",
 			"*.m": "c"
-		}
+		},
+		"makefile.launchConfigurations": [
+			{
+				"cwd": "/home/hackerusb/Documents/github/Relative-gravity-ui-raylib",
+				"binaryPath": "/home/hackerusb/Documents/github/Relative-gravity-ui-raylib/game",
+				"binaryArgs": []
+			}
+		]
 	}
 }

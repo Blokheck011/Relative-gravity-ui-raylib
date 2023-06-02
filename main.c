@@ -1,6 +1,6 @@
 #include <string.h>
 #include "libraries/raylib.h"
-#define MAX_INPUT_CHARS     3
+#define MAX_INPUT_CHARS     999
 
 int main() {
 
@@ -21,9 +21,11 @@ int main() {
     char earthWeight[MAX_INPUT_CHARS + 1] = "\0";      // NOTE: One extra space required for null terminator char '\0'
 
   //Initialization
+    SetConfigFlags(FLAG_MSAA_4X_HINT);
     InitWindow(GetScreenWidth(), GetScreenHeight(), "relative-gravity");
     if (IsWindowReady()){
-      ToggleFullscreen();
+      SetConfigFlags(FLAG_WINDOW_UNDECORATED);
+      MaximizeWindow();
       }
     
     Image icon = LoadImage("resources/icon.png");
