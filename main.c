@@ -20,7 +20,6 @@ int main() {
     int EarthWeightInt;
 
   //Initialization
-    SetConfigFlags(FLAG_MSAA_4X_HINT);
     InitWindow(GetScreenWidth(), GetScreenHeight(), "relative-gravity");
     if (IsWindowReady()){
       SetConfigFlags(FLAG_WINDOW_UNDECORATED);
@@ -44,10 +43,10 @@ int main() {
   Texture2D neptunebg = LoadTexture("resources/neptune.png");
   while (!WindowShouldClose()){
     //update
-    //int ScreenWidth = GetScreenWidth();
-    //int ScreenHeight = GetScreenHeight();
-    //float HalfScreenWidth = ScreenWidth/2;
-    //float HalfScreenHeight = ScreenHeight/2;
+    int ScreenWidth = GetScreenWidth();
+    int ScreenHeight = GetScreenHeight();
+    float HalfScreenWidth = ScreenWidth/2;
+    float HalfScreenHeight = ScreenHeight/2;
 
     switch (planet_pointer) {
       case 0: {
@@ -149,7 +148,6 @@ int main() {
         break;
       }
     }
-    
     EndDrawing();
   }
   free(planet_pointer_text);
