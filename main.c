@@ -1,5 +1,6 @@
 #include <string.h>
 #include "libraries/raylib.h"
+#include <stdlib.h>
 
 int main() {
 
@@ -117,6 +118,7 @@ int main() {
         DrawText(EarthWeightInt, 200, 160, 50, WHITE);
         DrawText(TextFormat("Planet > "), 30, 300, 50, WHITE);
         DrawText(TextFormat(planet_pointer_text), 250, 300, 50, WHITE);
+        DrawText("Scroll to change your weight and use the up/down arrow keys to change the planet.", (ScreenHeight-30), 0, 20, WHITE);
         break;
       }
       case (1): {
